@@ -4,9 +4,9 @@ server:
 spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
-    show-val: true
-    hibernate:
-      ddl-auto: update
+    show-sql: true
+#    hibernate:
+#      ddl-auto: update
   datasource:
     url: jdbc:mysql://localhost:3306/bankAccount?createDatabaseIfNotExists=true
     username: root
