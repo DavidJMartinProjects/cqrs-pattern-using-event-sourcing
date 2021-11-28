@@ -19,6 +19,9 @@ public class AccountEventStore implements EventStore {
     @Autowired
     private EventStoreRepository repository;
 
+    @Autowired
+    private AccountEventProducer accountEventProducer;
+
     @Override
     public void saveEvents(String aggregateId, Iterable<BaseEvent> events, int expectedVersion) {
         List<EventModel> eventStream = repository.findByAggregateIdentifier(aggregateId);
@@ -41,8 +44,8 @@ public class AccountEventStore implements EventStore {
                 .build();
             EventModel persistedEvent = repository.save(eventModel);
 
-            if(persistedEvent != null) {
-                // ToDo: produce event to Kafka
+            if(!persistedEvent.getId().isEmpty()) {
+                accountEventProducer.produce(event.getClass().getSimpleName(), event);
             }
         }
     }
