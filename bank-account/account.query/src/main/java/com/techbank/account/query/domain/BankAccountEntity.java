@@ -2,6 +2,10 @@ package com.techbank.account.query.domain;
 
 import com.techbank.account.common.dto.AccountType;
 import com.techbank.cqrs.core.domain.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +15,10 @@ import java.util.Date;
  * @author david
  */
 @Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BankAccountEntity extends BaseEntity {
 
     @Id
@@ -18,7 +26,7 @@ public class BankAccountEntity extends BaseEntity {
 
     private String accountHolder;
 
-    private Date creationType;
+    private Date creationDate;
 
     private AccountType accountType;
 
